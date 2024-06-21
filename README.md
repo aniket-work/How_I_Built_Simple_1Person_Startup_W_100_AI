@@ -90,9 +90,10 @@
    - Download CUDA Toolkit from [NVIDIA CUDA Toolkit Archive](https://developer.nvidia.com/cuda-toolkit-archive).
    - Download cuDNN from [NVIDIA cuDNN Archive](https://developer.nvidia.com/rdp/cudnn-archive).
 
-6. **Run the Drive-Through Application**
+6. **Run the Shipping Application**
 
    Finally, execute the following command to start the Drive-Through application:
 
    ```bash
-   streamlit run DriveThrough.py
+   python server.py
+   streamlit run web_site.py

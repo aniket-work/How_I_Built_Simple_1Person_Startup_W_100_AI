@@ -1,0 +1,46 @@
+{
+  "Smart TV": [
+    {
+      "product_name": "Smart TV",
+      "slot": 5
+    },
+    {
+      "product_name": "Smart TV",
+      "slot": 5
+    }
+  ],
+  "Office Chair": [
+    {
+      "product_name": "Office Chair",
+      "slot": 5
+    }
+  ],
+  "Coffee Maker": [
+    {
+      "product_name": "Coffee Maker",
+      "slot": 4
+    },
+    {
+      "product_name": "Coffee Maker",
+      "slot": 4
+    }
+  ],
+  "Laptop Charger": [
+    {
+      "product_name": "Laptop Charger",
+      "slot": 2
+    }
+  ],
+  "Refrigerator": [
+    {
+      "product_name": "Refrigerator",
+      "slot": 5
+    }
+  ],
+  "Portable Fan": [
+    {
+      "product_name": "Portable Fan",
+      "slot": 1
+    }
+  ]
+}
