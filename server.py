@@ -1,7 +1,6 @@
 from flask import Flask, request
 from dotenv import load_dotenv
 from groq import Groq
-from langchain_community.llms import Ollama
 import json
 import os
 import re
@@ -10,7 +9,7 @@ import re
 load_dotenv()
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 
-# Initialize the Ollama language model interface
+# Initialize the Groq language model interface
 cached_llm = Groq(api_key=GROQ_API_KEY)
 
 # Create a Flask app instance
@@ -42,15 +41,23 @@ def classify_product_llm(product_name, price):
 
     Respond with only the slot number (1, 2, 3, 4, or 5).
     """
-    response = cached_llm(prompt)
+    response = cached_llm.chat.completions.create(
+        model="llama3-8b-8192",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.5,
+        max_tokens=1024
+    )
     try:
-        slot = int(response.strip())
+        slot = int(response.choices[0].message.content.strip())
         if 1 <= slot <= 5:
             return slot
         else:
             raise ValueError
     except ValueError:
-        print(f"Invalid LLM response: {response}")
+        print(f"Invalid LLM response: {response.choices[0].message.content}")
         return None
 
 
@@ -67,10 +74,11 @@ def handle_llm():
     print(json_content)
     product_name = json_content.get("product_name")
     product_details = json_content.get("product_details")
-
+    print("Extract Price")
     # Extract price and classify product
     price = extract_price(product_details)
     if price is not None:
+        print("call LLM")
         slot = classify_product_llm(product_name, price)
         if slot is not None:
             # Ensure the database file exists
