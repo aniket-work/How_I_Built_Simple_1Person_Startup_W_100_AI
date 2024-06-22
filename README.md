@@ -36,8 +36,6 @@ The project consists of the following components:
 **Prerequisites:**
 - Python installed on your system.
 - A basic understanding of virtual environments and command-line tools.
-- Docker (for running Qdrant DB)
-- NVIDIA CUDA (optional, for GPU acceleration)
 
 **Steps:**
 1. **Virtual Environment Setup:**
